@@ -1,6 +1,6 @@
-// src/components/StudentList.jsx
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import './StudentList.css';
 
 const StudentList = () => {
     const [students, setStudents] = useState([]);

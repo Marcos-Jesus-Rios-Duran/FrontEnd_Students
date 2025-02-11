@@ -1,0 +1,53 @@
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #00796b;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+.collapsible {
+    cursor: pointer;
+    background-color: #e0f7fa;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.collapsible h4 {
+    margin: 0;
+    padding: 10px;
+    background-color: #80deea;
+    border-bottom: 1px solid #ddd;
+}
+
+.collapsible p {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.student-details {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+button.ui-btn {
+    background-color: #00796b;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button.ui-btn:hover {
+    background-color: #004d40;
+}
+

@@ -1,0 +1,61 @@
+footer {
+    background-color: #1e3a8a; /* Azul oscuro para el fondo */
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.navbar ul li {
+    margin: 0 15px;
+}
+
+.navbar ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    display: inline-block;
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* Colores específicos por red social */
+.navbar ul li a.facebook {
+    background-color: #1877f2; /* Azul de Facebook */
+}
+
+.navbar ul li a.instagram {
+    background: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
+}
+
+.navbar ul li a.twitter {
+    background-color: #000000; /* Negro de X (Twitter) */
+}
+
+.navbar ul li a.linkedin {
+    background-color: #0077b5; /* Azul de LinkedIn */
+}
+
+/* Efecto hover */
+.navbar ul li a:hover {
+    opacity: 0.8;
+}
+
+/* Título */
+#titulo {
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+    color: #f43f5e; /* Rosa para el título */
+    font-style:inherit;
+    
+}

@@ -1,42 +1,55 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  margin: 0;
+  padding-bottom: 60px; /* Espacio para el footer */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 10px;
+  color: #333;
+}
+
+.header, .footer {
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.content {
+  padding: 20px;
+  background-color: white;
+  margin: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.ui-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.navbar ul {
+  list-style: none;
+  padding: 0;
 }
 
-.card {
-  padding: 2em;
+.navbar ul li {
+  display: inline;
+  margin-right: 10px;
 }
 
-.read-the-docs {
-  color: #888;
+.navbar ul li a {
+  color: white;
+  text-decoration: none;
+  padding: 5px 10px;
+  background-color: #444;
+  border-radius: 5px;
+}
+
+.navbar ul li a:hover {
+  background-color: #666;
 }

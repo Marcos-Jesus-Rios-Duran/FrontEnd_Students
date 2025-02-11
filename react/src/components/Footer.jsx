@@ -1,18 +1,19 @@
-// src/components/Footer.jsx
 import React from 'react';
+import './Footer.css';
 
 const Footer = () => {
     return (
-        <div style={{ overflow: 'hidden' }}>
-            <h4 style={{ textAlign: 'center' }}>Redes sociales</h4>
+        <footer>
+            <h4 id="titulo">Síguenos en nuestras redes sociales</h4>
             <div className="navbar">
                 <ul>
-                    <li><a href="#" data-icon="user"></a></li>
-                    <li><a href="#" data-icon="heart"></a></li>
-                    <li><a href="#" data-icon="mail"></a></li>
+                    <li><a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className="facebook">Facebook</a></li>
+                    <li><a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="instagram">Instagram</a></li>
+                    <li><a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="twitter">X </a></li>
+                    <li><a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" className="linkedin">LinkedIn</a></li>
                 </ul>
             </div>
-        </div>
+        </footer>
     );
 };
 

@@ -1,0 +1,57 @@
+header {
+    background-color: #474747; /* Verde jade */
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    border-bottom: 5px solid #1e3a8a; /* Azul oscuro del footer */
+}
+
+#titulo {
+    font-family: "Times New Roman", serif;
+    color: #FFC107; /* Amarillo dorado */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Opciones en la parte derecha */
+.ui-btn-right {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background-color: #1e3a8a; /* Azul oscuro */
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.ui-btn-right:hover {
+    background-color: #3b82f6; /* Azul claro del hover en footer */
+}
+
+/* Barra de navegación */
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.navbar ul li {
+    margin: 0 15px;
+}
+.Boton {
+    color: black;
+    text-decoration: none;
+    padding: 8px 15px;
+    background: linear-gradient(45deg, #00DC34, #1e3a8a, #3b82f6, #9333ea, #FFC107);
+    border-radius: 10px;
+    border: 2px solid #FFFF; /* Verde jade en el borde */
+    transition: background-color 0.3s ease-in-out, transform 0.2s;
+}
+
+.navbar ul li a:hover {
+    background-color: #9333ea; /* Morado igual que el footer */
+    transform: scale(1.05);
+}

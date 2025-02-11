@@ -1,19 +1,18 @@
-// src/components/Header.jsx
 import React from 'react';
+import './Header.css';
 
 const Header = () => {
     return (
-        <div style={{ overflow: 'hidden' }}>
-            <h1>Control escolar</h1>
-            <a href="#" className="ui-btn-right">Opciones</a>
+        <header>
+            <h1 id="titulo">Control Escolar</h1>
             <div className="navbar">
                 <ul>
-                    <li><a href="#">Alumnos</a></li>
-                    <li><a href="#">Docentes</a></li>
-                    <li><a href="#">Aulas</a></li>
+                    <li><a class="Boton" href="#">Alumnos</a></li>
+                    <li><a class="Boton" href="#">Docentes</a></li>
+                    <li><a class="Boton" href="#">Aulas</a></li>
                 </ul>
             </div>
-        </div>
+        </header>
     );
 };
 

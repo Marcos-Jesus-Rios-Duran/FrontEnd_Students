@@ -1,6 +1,6 @@
-// src/components/StudentForm.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
+import './StudentForm.css';
 
 const StudentForm = ({ onStudentAdded }) => {
     const [student, setStudent] = useState({
@@ -39,7 +39,6 @@ const StudentForm = ({ onStudentAdded }) => {
     };
 
     return (
-        
         <form onSubmit={handleSubmit}>
             <label htmlFor="txtStudentId">Matrícula</label>
             <input type="number" name="student_id" id="txtStudentId" value={student.student_id} onChange={handleChange} />
