@@ -2,52 +2,195 @@ h2 {
     text-align: center;
     margin-bottom: 20px;
     color: #00796b;
-}
-
-ul {
+  }
+  
+  ul {
     list-style: none;
     padding: 0;
-}
-
-.collapsible {
-    cursor: pointer;
+  }
+  
+  .collapsible {
     background-color: #e0f7fa;
-    padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
     margin-bottom: 10px;
-}
-
-.collapsible h4 {
-    margin: 0;
+    padding: 10px;
+  }
+  
+  .collapsible-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
     padding: 10px;
     background-color: #80deea;
     border-bottom: 1px solid #ddd;
-}
-
-.collapsible p {
+    border-radius: 5px;
+  }
+  
+  .collapsible-content {
     padding: 10px;
-    border-bottom: 1px solid #ddd;
-}
-
-.student-details {
-    margin-top: 20px;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-button.ui-btn {
+    border-top: 1px solid #ddd;
+  }
+  
+  .buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  button.ui-btn {
     background-color: #00796b;
     color: white;
-    padding: 10px;
+    padding: 8px 12px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+  }
+  
+  button.ui-btn:hover {
+    background-color: #004d40;
+  }
+  
+  button.delete-btn {
+    background-color: #d32f2f;
+  }
+  
+  button.delete-btn:hover {
+    background-color: #b71c1c;
+  }
+  
+  button.toggle-btn {
+    background-color: #0288d1;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button.toggle-btn:hover {
+    background-color: #01579b;
+  }
+  .modal {
+    position: fixed; /* Fijar el modal encima de todo */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-button.ui-btn:hover {
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+    width: 400px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: red;
+}
+.btn-group {
+    display: flex;
+    gap: 10px; /* Espacio entre los botones */
+}
+
+.ui-btn {
+    padding: 8px 12px;
+    font-size: 14px;
+}
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Espacio entre cada campo */
+}
+
+.modal-content label {
+    font-weight: bold;
+}
+
+.modal-content input {
+    width: 100%; /* Que los inputs ocupen el mismo ancho */
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: red;
+}
+
+.form-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.form-group input {
+    width: 50%; /* Para que "Nombre" y "Apellido" compartan el espacio */
+}
+
+.btn-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.ui-btn {
+    padding: 10px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.ui-btn-danger {
+    background-color: #d32f2f;
+    color: white;
+}
+
+.ui-btn-danger:hover {
+    background-color: #b71c1c;
+}
+
+.ui-btn-success {
+    background-color: #00796b;
+    color: white;
+}
+
+.ui-btn-success:hover {
     background-color: #004d40;
 }
-

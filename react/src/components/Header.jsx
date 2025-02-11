@@ -7,9 +7,9 @@ const Header = () => {
             <h1 id="titulo">Control Escolar</h1>
             <div className="navbar">
                 <ul>
-                    <li><a class="Boton" href="#">Alumnos</a></li>
-                    <li><a class="Boton" href="#">Docentes</a></li>
-                    <li><a class="Boton" href="#">Aulas</a></li>
+                    <li><a className="Boton" href="#">Alumnos</a></li>
+                    <li><a className="Boton" href="#">Docentes</a></li>
+                    <li><a className="Boton" href="#">Aulas</a></li>
                 </ul>
             </div>
         </header>

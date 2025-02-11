@@ -1,5 +1,5 @@
 header {
-    background-color: #474747; /* Verde jade */
+    background-color: #E0D8B0; /* Verde jade */
     color: white;
     text-align: center;
     padding: 15px 0;
@@ -45,7 +45,7 @@ header {
     color: black;
     text-decoration: none;
     padding: 8px 15px;
-    background: linear-gradient(45deg, #00DC34, #1e3a8a, #3b82f6, #9333ea, #FFC107);
+    background: linear-gradient(45deg,#93e5f3, #c725bf, #2770b9,#6aff07);
     border-radius: 10px;
     border: 2px solid #FFFF; /* Verde jade en el borde */
     transition: background-color 0.3s ease-in-out, transform 0.2s;

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <title>Control escolar</title>
+</head>
+<body>
+    <div data-role="page">
+        <div data-role="header" style="overflow:hidden;">
+            <h1>Control escolar</h1>
+            <a href="#" data-icon="gear" class="ui-btn-right">Opciones</a>
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#">Alumnos</a></li>
+                    <li><a href="#">Docentes</a></li>
+                    <li><a href="#">Aulas</a></li>
+                </ul>
+            </div>
+        </div>
+        <div role="content" class="ui-content">
+            <form action="/api/students/updateOne/<%= student.student_id %>" method="POST">
+                <label for="txtStudentId">Matrícula</label>
+                <input type="number" name="student_id" id="txtStudentId" value="<%= student.student_id %>">
+                <label for="txtStudentName">Nombre</label>
+                <input type="text" name="name" id="txtStudentName" value="<%= student.name %>">
+                <label for="txtStudentLastName">Apellido</label>
+                <input type="text" name="lastname" id="txtStudentLastName" value="<%= student.lastname %>">
+                <label for="txtStudentGrade">Grado</label>
+                <input type="number" name="grade" id="txtStudentGrade" value="<%= student.grade %>">
+                <label for="txtStudentGroup">Grupo</label>
+                <input type="text" name="group" id="txtStudentGroup" value="<%= student.group %>">
+                <label for="txtStudentAverage">Promedio</label>
+                <input type="text" name="average" id="txtStudentAverage" value="<%= student.average %>">
+                <button class="ui-btn ui- btn-inline">Actualizar</button>
+            </form>
+        </div>
+        <div data-role="footer" style="overflow: hidden;">
+            <h4 style="text-align: center;">Redes sociales</h4>
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#" data-icon="user"></a></li>
+                    <li><a href="#" data-icon="heart"></a></li>
+                    <li><a href="#" data-icon="mail"></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
