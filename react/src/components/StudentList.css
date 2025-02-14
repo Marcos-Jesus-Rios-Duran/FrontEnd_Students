@@ -182,7 +182,10 @@ button.toggle-btn:hover {
 }
 
 .student-details {
+  display: block !important;
+  visibility: visible !important;
+  color: black; /* Asegura que el texto sea visible */
+  background-color: #ffffff; /* Asegura contraste */
   padding: 10px;
-  border-top: 1px solid #ddd;
-  display: block; /* Asegurémonos de que esté configurado para mostrarse */
+  border-radius: 5px;
 }
