@@ -50,31 +50,31 @@ const StudentList = () => {
     return (
         <div>
             <h2>Lista de Estudiantes</h2>
-            <ul>
+               <ul>
                 {students.map((student) => (
                     <li key={student.student_id} className="collapsible">
-                        <div className="student-header">
-                            <h4>{student.name}</h4>
-                            <button onClick={() => toggleDetails(student.student_id)} className="ui-btn">
-                                {showDetails[student.student_id] ? 'Menos' : 'Más'}
-                            </button>
+                    <div className="student-header">
+                        <h4>{student.name}</h4>
+                        <button onClick={() => toggleDetails(student.student_id)} className="ui-btn">
+                        {showDetails[student.student_id] ? 'Menos' : 'Más'}
+                        </button>
+                    </div>
+                    {showDetails[student.student_id] && (
+                        <div className="student-details">
+                        <p>Matrícula: {student.student_id}</p>
+                        <p>Apellido: {student.lastname}</p>
+                        <p>Grado: {student.grade}</p>
+                        <p>Grupo: {student.group}</p>
+                        <p>Promedio: {student.average}</p>
+                        <div className="btn-group">
+                            <button onClick={() => handleEdit(student)} className="ui-btn ui-btn-update">Actualizar</button>
+                            <button onClick={() => handleDelete(student.student_id)} className="ui-btn ui-btn-danger">Borrar</button>
                         </div>
-                        {showDetails[student.student_id] && (
-                            <div className="student-details">
-                                <p>Matrícula: {student.student_id}</p>
-                                <p>Apellido: {student.lastname}</p>
-                                <p>Grado: {student.grade}</p>
-                                <p>Grupo: {student.group}</p>
-                                <p>Promedio: {student.average}</p>
-                                <div className="btn-group">
-                                    <button onClick={() => handleEdit(student)} className="ui-btn ui-btn-update">Actualizar</button>
-                                    <button onClick={() => handleDelete(student.student_id)} className="ui-btn ui-btn-danger">Borrar</button>
-                                </div>
-                            </div>
-                        )}
+                        </div>
+                    )}
                     </li>
                 ))}
-            </ul>
+                </ul>
             {editStudent && (
                 <div className="modal">
                     <div className="modal-content">
