@@ -7,33 +7,28 @@ form {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
-label {
-    font-weight: bold;
-    margin-bottom: 5px;
+.student-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: #e0f7fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
 input {
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 16px;
+    background-color: white !important;  /* Forzar fondo blanco */
+    color: black !important;  /* Asegurar texto negro */
 }
 
-input:focus {
-    border-color: #00796b;
-    outline: none;
-}
-
-button {
-    background-color: #00796b;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #004d40;
+.label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333 !important;  /* Asegurar que el color sea oscuro */
+    display: block;  /* Asegurar que los labels estén en una línea separada */
+    margin-bottom: 5px;
 }
