@@ -1,15 +1,15 @@
 import React from 'react';
 import './Header.css';
 
-const Header = () => {
+const Header = ({ setView }) => {
     return (
         <header>
             <h1 id="titulo">Control Escolar</h1>
             <div className="navbar">
                 <ul>
-                    <li><a className="Boton" href="#">Alumnos</a></li>
-                    <li><a className="Boton" href="#">Docentes</a></li>
-                    <li><a className="Boton" href="#">Aulas</a></li>
+                    <li><button className="Boton" onClick={() => setView('students')}>Alumnos</button></li>
+                    <li><button className="Boton" onClick={() => setView('teachers')}>Docentes</button></li>
+                    <li><button className="Boton" onClick={() => setView('classrooms')}>Aulas</button></li>
                 </ul>
             </div>
         </header>

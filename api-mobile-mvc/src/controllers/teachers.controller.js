@@ -2,22 +2,18 @@ import teacherDAO from "../dao/teachers.dao.js";
 const teachersController ={};
 
 
-teachersController.getAllT=(req,res)=>{
+teachersController.getAllT = (req, res) => {
     teacherDAO.getAllT()
-    .then((teachers)=>{
-        res.json({
-            data: teachers
-        });
-    })
-    .catch((error)=>{
-        res.json({
-            data:{
-                message: error
-            }
+        .then((teachers) => {
+            // Envuelve el array de docentes dentro de la propiedad 'data'
+            res.json({ data: teachers });
         })
-    });
-    
+        .catch((error) => {
+            // En caso de error, devuelves un objeto con la propiedad 'data' y el mensaje de error
+            res.json({ data: { message: error } });
+        });
 };
+
 
 teachersController.getOne=(req,res)=>{
     teacherDAO.getOne(req.params.teacher_number)
