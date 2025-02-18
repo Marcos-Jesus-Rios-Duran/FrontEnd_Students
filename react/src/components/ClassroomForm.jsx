@@ -17,7 +17,7 @@ function ClassroomForm({ onClassroomAdded }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://localhost:3000/api/classrooms/insert', {
+            const response = await fetch('http://10.10.60.31:3000/api/classrooms/insert', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(classroom),

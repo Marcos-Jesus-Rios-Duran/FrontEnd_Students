@@ -7,17 +7,18 @@ import teachersRoutes from './routes/teachers.routes.js';
 import classroomsRoutes from './routes/classrooms.routes.js';
 const app = express(); //para usar express instanciamos un hijo de express 
 import cors from 'cors'
-// Configura CORS para permitir solicitudes desde 'http://localhost:5173'
-app.use(cors({
-    origin: 'http://localhost:5173'
- }));
-//Settings
-app.set('view engine', ejs);
-app.set('port', process.env.PORT||3000); //se asigna el puerto 3000 para alzar el servidor
 //Middlewares es un software que permite la comunicación entre aplicaciones, sistemas operativos y bases de datos.
 app.use(express.json()); //para que la aplicación entienda json
 app.use(express.urlencoded({extended: true})); //para que se lea los formularios 
 app.use(morgan('dev')); //para que se asigne la bitacora cada que tenga una petición el servidor
+
+// Configura CORS para permitir solicitudes desde 'http://localhost:5173'
+app.use(cors());
+
+//Settings
+app.set('view engine', ejs);
+app.set('port', process.env.PORT||3000); //se asigna el puerto 3000 para alzar el servidor
+
 //Routes
 app.use("/api/teachers", teachersRoutes)
 app.use("/api/students", studentsRoutes); //se utiliza el prefijo para identificar al abrir las rutas y busca una ruta desde app.js

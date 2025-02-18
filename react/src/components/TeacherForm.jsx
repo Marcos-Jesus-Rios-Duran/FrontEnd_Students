@@ -17,7 +17,7 @@ function TeacherForm({ onTeacherAdded }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://localhost:3000/api/teachers/insert', {
+            const response = await fetch('http://10.10.60.31:3000/api/teachers/insert', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(teacher),

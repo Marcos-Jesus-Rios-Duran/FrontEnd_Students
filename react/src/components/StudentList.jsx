@@ -1,24 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import './StudentList.css';
 
-const StudentList = () => {
-    const [students, setStudents] = useState([]);
-    const [selectedStudent, setSelectedStudent] = useState(null);
+const StudentList = ({ students, setStudents }) => {
     const [showDetails, setShowDetails] = useState({});
     const [editStudent, setEditStudent] = useState(null);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get('http://localhost:3000/api/students/getAll');
-                setStudents(response.data.data);
-            } catch (error) {
-                console.log('Error fetching students:', error);
-            }
-        };
-        fetchData();
-    }, []);
 
     const toggleDetails = (studentId) => {
         setShowDetails(prev => ({ ...prev, [studentId]: !prev[studentId] }));
@@ -30,7 +16,7 @@ const StudentList = () => {
 
     const handleUpdate = async () => {
         try {
-            await axios.post(`http://localhost:3000/api/students/updateOne/${editStudent.student_id}`, editStudent);
+            await axios.post(`http://10.10.60.31:3000/api/students/updateOne/${editStudent.student_id}`, editStudent);
             setStudents(students.map(s => s.student_id === editStudent.student_id ? editStudent : s));
             setEditStudent(null);
         } catch (error) {
@@ -40,7 +26,7 @@ const StudentList = () => {
 
     const handleDelete = async (studentId) => {
         try {
-            await axios.delete(`http://localhost:3000/api/students/deleteOne/${studentId}`);
+            await axios.delete(`http://10.10.60.31:3000/api/students/deleteOne/${studentId}`);
             setStudents(students.filter(s => s.student_id !== studentId));
         } catch (error) {
             console.log('Error deleting student:', error);
