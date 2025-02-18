@@ -28,7 +28,7 @@ const StudentForm = ({ onStudentAdded }) => {
         }
     
         try {
-            const response = await axios.post('http://10.10.60.31:3000/api/students/insert', student);
+            const response = await axios.post('http://10.10.60.28:3000/api/students/insert', student);
             alert('Student saved successfully');
             setStudent({
                 student_id: '',

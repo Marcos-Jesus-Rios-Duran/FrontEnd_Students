@@ -18,7 +18,7 @@ function App() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://10.10.60.31:3000/api/students/getAll');
+                const response = await axios.get('http://10.10.60.28:3000/api/students/getAll');
                 setStudents(response.data.data);
             } catch (error) {
                 console.log('Error fetching students:', error);

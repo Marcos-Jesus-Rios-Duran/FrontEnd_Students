@@ -16,7 +16,7 @@ const StudentList = ({ students, setStudents }) => {
 
     const handleUpdate = async () => {
         try {
-            await axios.post(`http://10.10.60.31:3000/api/students/updateOne/${editStudent.student_id}`, editStudent);
+            await axios.post(`http://10.10.60.28:3000/api/students/updateOne/${editStudent.student_id}`, editStudent);
             setStudents(students.map(s => s.student_id === editStudent.student_id ? editStudent : s));
             setEditStudent(null);
         } catch (error) {

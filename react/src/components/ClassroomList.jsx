@@ -11,7 +11,7 @@ const ClassroomList = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://10.10.60.31:3000/api/classrooms/getAll');
+                const response = await axios.get('http://10.10.60.28:3000/api/classrooms/getAll');
                 setClassrooms(response.data.data);
             } catch (error) {
                 console.log('Error fetching classrooms:', error);
@@ -30,7 +30,7 @@ const ClassroomList = () => {
 
     const handleUpdate = async () => {
         try {
-            await axios.post(`http://10.10.60.31:3000/api/classrooms/updateOne/${editClassroom.classroom_id}`, editClassroom);
+            await axios.post(`http://10.10.60.28:3000/api/classrooms/updateOne/${editClassroom.classroom_id}`, editClassroom);
             setClassrooms(classrooms.map(c => c.classroom_id === editClassroom.classroom_id ? editClassroom : c));
             setEditClassroom(null);
         } catch (error) {
@@ -40,7 +40,7 @@ const ClassroomList = () => {
 
     const handleDelete = async (classroomId) => {
         try {
-            await axios.delete(`http:/10.10.60.31:3000/api/classrooms/deleteOne/${classroomId}`);
+            await axios.delete(`http:/10.10.60.28:3000/api/classrooms/deleteOne/${classroomId}`);
             setClassrooms(classrooms.filter(c => c.classroom_id !== classroomId));
         } catch (error) {
             console.log('Error deleting classroom:', error);
