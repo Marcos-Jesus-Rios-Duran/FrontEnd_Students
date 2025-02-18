@@ -1,3 +1,5 @@
+/* StudentForm.css */
+
 form {
     display: flex;
     flex-direction: column;
@@ -7,6 +9,7 @@ form {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
 .student-form {
     display: flex;
     flex-direction: column;
@@ -16,19 +19,20 @@ form {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
 input {
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 16px;
-    background-color: white !important;  /* Forzar fondo blanco */
-    color: black !important;  /* Asegurar texto negro */
+    background-color: white !important;
+    color: black !important;
 }
 
 .label {
     font-size: 16px;
     font-weight: bold;
-    color: #333 !important;  /* Asegurar que el color sea oscuro */
-    display: block;  /* Asegurar que los labels estén en una línea separada */
+    color: #333 !important;
+    display: block;
     margin-bottom: 5px;
 }
