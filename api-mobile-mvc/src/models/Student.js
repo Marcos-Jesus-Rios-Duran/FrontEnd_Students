@@ -1,19 +1,28 @@
+import mongoose from 'mongoose';
+import moment from 'moment-timezone';
 
-import {model, Schema} from "mongoose";
-const studentSchema= new Schema({
-    student_id:{
+const studentSchema = new mongoose.Schema({
+    student_id: {
         unique: true,
-        require: true,
+        required: true,
         type: Number
     },
     name: String,
     lastname: String,
     grade: Number,
     group: String,
-    average: Number
-},{
+    average: Number,
+    createdAt: { 
+        type: Date, 
+        default: () => moment().tz("America/Mexico_City").toDate() 
+    },
+    updatedAt: { 
+        type: Date, 
+        default: () => moment().tz("America/Mexico_City").toDate() 
+    }
+}, {
     versionKey: false,
-    timestamps:true
+    timestamps: true
 });
 
-export default model('students', studentSchema);
+export default mongoose.model('Student', studentSchema);

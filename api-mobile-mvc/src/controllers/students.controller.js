@@ -1,103 +1,131 @@
 import studentDAO from "../dao/students.dao.js";
-const studentsController ={};
+import Joi from 'joi';
 
+const studentsController = {};
 
-studentsController.getAll=(req,res)=>{
+const studentSchema = Joi.object({
+    student_id: Joi.number().required(),
+    name: Joi.string().required(),
+    lastname: Joi.string().required(),
+    grade: Joi.number().required(),
+    group: Joi.string().required(),
+    average: Joi.number().required()
+});
+
+studentsController.getAll = (req, res) => {
     studentDAO.getAll()
-    .then((students)=>{
-        console.log(students);
-        res.json({
-            data: students
-        });
-        //res.render('../src/views/index.ejs', {students});
-    })
-    .catch((error)=>{
-        res.json({
-            data:{
-                message: error
-            }
+        .then((students) => {
+            console.log(students);
+            res.json({
+                data: students
+            });
         })
-    });
-    
-};
-
-studentsController.getOne=(req, res)=>{
-    studentDAO.getOne(req.params.student_id)
-    .then((student)=>{
-        if(student!=null){
+        .catch((error) => {
             res.json({
-                data: student
-            })
-        }else{
-            res.json({
-                data:{
-                    message: "Student no found"
+                data: {
+                    message: error
                 }
-            })
-        }
-       //res.render('../src/views/edit.ejs', {student})
-    })
+            });
+        });
 };
 
-studentsController.insert=(req, res)=>{
-    studentDAO.insert(req.body)
-    .then((response)=>{
-        res.json({
-            data:{
-                message: "Student saved",
-                student: response
+studentsController.getOne = (req, res) => {
+    studentDAO.getOne(req.params.student_id)
+        .then((student) => {
+            if (student != null) {
+                res.json({
+                    data: student
+                });
+            } else {
+                res.json({
+                    data: {
+                        message: "Student not found"
+                    }
+                });
             }
-        })
-       //res.redirect('/api/students/getAll');
-    })
-    .catch((error)=>{
-        res.json({
-            data:{
-                message:error     
-        }})
-    })
-}
+        });
+};
 
+studentsController.insert = async (req, res) => {
+    const { error } = studentSchema.validate(req.body);
+    if (error) {
+        return res.status(400).json({
+            data: {
+                message: error.details[0].message
+            }
+        });
+    }
 
-studentsController.updateOne=(req, res)=>{
-    studentDAO.updateOne(req.body, req.params.student_id)
-    .then((result)=>{
+    try {
+        const existingStudent = await studentDAO.getOne(req.body.student_id);
+        if (existingStudent) {
+            res.json({
+                data: {
+                    message: "Student already exists",
+                }
+            });
+        } else {
+            const response = await studentDAO.insert(req.body);
+            res.json({
+                data: {
+                    message: "Student saved",
+                    student: response
+                }
+            });
+        }
+    } catch (error) {
         res.json({
-            data:{
-                message: "Student updated succesfully",
+            data: {
+                message: error.message
+            }
+        });
+    }
+};
+
+studentsController.updateOne = async (req, res) => {
+    const { error } = studentSchema.validate(req.body);
+    if (error) {
+        return res.status(400).json({
+            data: {
+                message: error.details[0].message
+            }
+        });
+    }
+
+    try {
+        const result = await studentDAO.updateOne(req.body, req.params.student_id);
+        res.json({
+            data: {
+                message: "Student updated successfully",
                 result: result
             }
-        })
-       //res.redirect('/api/students/getAll')
-    })
-    .catch((error)=>{
+        });
+    } catch (error) {
         res.json({
-            data:{
-                message: error
+            data: {
+                message: error.message
             }
-        })
-    })
+        });
+    }
 };
 
-
-studentsController.deleteOne=(req, res)=>{
+studentsController.deleteOne = (req, res) => {
     studentDAO.deleteOne(req.params.student_id)
-    .then((studentDeleted)=>{
-        res.json({
-            data:{
-                message: "Student deleted successfully",
-                student_delete: studentDeleted
-            }
+        .then((studentDeleted) => {
+            res.json({
+                data: {
+                    message: "Student deleted successfully",
+                    student_delete: studentDeleted
+                }
+            });
         })
-       //res.redirect('/api/students/getAll')
-    })
-    .catch((error)=>{
-        res.json({
-            data:{
-                error: error
-            }
-        })
-    })
+        .catch((error) => {
+            res.json({
+                data: {
+                    error: error
+                }
+            });
+        });
 };
 
 export default studentsController;
