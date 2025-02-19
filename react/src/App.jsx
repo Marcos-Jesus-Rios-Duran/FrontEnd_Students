@@ -13,11 +13,11 @@ import './App.css';
 function App() {
     const [view, setView] = useState('students');
     const [students, setStudents] = useState([]);
-    const [teachers, setTeachers] = useState([]); // Agrega estado para los docentes
+    const [teachers, setTeachers] = useState([]); 
     const [classrooms, setClassrooms] = useState([]);
 
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchStudents = async () => {
             try {
                 const response = await axios.get('http://192.168.1.72:3000/api/students/getAll');
                 setStudents(response.data.data);
@@ -25,7 +25,18 @@ function App() {
                 console.log('Error fetching students:', error);
             }
         };
-        fetchData();
+
+        const fetchTeachers = async () => {
+            try {
+                const response = await axios.get('http://192.168.1.72:3000/api/teachers/getAll'); // Ajusta la URL si es diferente
+                setTeachers(response.data.data);
+            } catch (error) {
+                console.log('Error fetching teachers:', error);
+            }
+        };
+
+        fetchStudents();
+        fetchTeachers(); // Llamada adicional para obtener los docentes
     }, []);
 
     const handleClassroomAdded = (newClassroom) => {
@@ -36,7 +47,7 @@ function App() {
         setStudents([...students, newStudent]);
     };
 
-    const handleTeacherAdded = (newTeacher) => { // Agrega esta función para los docentes
+    const handleTeacherAdded = (newTeacher) => { 
         setTeachers([...teachers, newTeacher]);
     };
 
@@ -51,8 +62,8 @@ function App() {
                     </>
                 ) : view === 'teachers' ? (
                     <>
-                        <TeacherForm onTeacherAdded={handleTeacherAdded} /> {/* Pasa la función como prop */}
-                        <TeacherList teachers={teachers} setTeachers={setTeachers} /> {/* Pasa el estado y la función de actualización */}
+                        <TeacherForm onTeacherAdded={handleTeacherAdded} /> 
+                        <TeacherList teachers={teachers} setTeachers={setTeachers} /> 
                     </>
                 ) : (
                     <>
