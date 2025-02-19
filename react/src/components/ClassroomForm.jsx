@@ -10,6 +10,8 @@ function ClassroomForm({ onClassroomAdded }) {
         capacity: ''
     });
 
+    const [errors, setErrors] = useState([]);
+
     const handleChange = (e) => {
         setClassroom({ ...classroom, [e.target.name]: e.target.value });
     };
@@ -23,7 +25,10 @@ function ClassroomForm({ onClassroomAdded }) {
                 body: JSON.stringify(classroom),
             });
 
-            if (!response.ok) throw new Error('Error al agregar aula');
+            if (!response.ok) {
+                const errorResponse = await response.json();
+                throw new Error(errorResponse.errors.join(', '));
+            }
 
             const newClassroom = await response.json();
             onClassroomAdded(newClassroom); // Agrega la nueva aula a la lista
@@ -34,13 +39,24 @@ function ClassroomForm({ onClassroomAdded }) {
                 type: '',
                 capacity: '',
             });
+            setErrors([]);
         } catch (error) {
+            setErrors(error.message.split(', '));
             console.error(error);
         }
     };
 
     return (
         <form onSubmit={handleSubmit}>
+            {errors.length > 0 && (
+                <div className="error-messages">
+                    <ul>
+                        {errors.map((error, index) => (
+                            <li key={index}>{error}</li>
+                        ))}
+                    </ul>
+                </div>
+            )}
             <label>Identificador del Aula:</label>
             <input
                 type="text"

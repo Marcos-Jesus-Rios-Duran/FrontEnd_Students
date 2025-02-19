@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './ClassroomList.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ClassroomList = () => {
     const [classrooms, setClassrooms] = useState([]);
-    const [selectedClassroom, setSelectedClassroom] = useState(null);
     const [showDetails, setShowDetails] = useState({});
     const [editClassroom, setEditClassroom] = useState(null);
+    const [confirmDelete, setConfirmDelete] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -14,7 +16,8 @@ const ClassroomList = () => {
                 const response = await axios.get('http://192.168.1.72:3000/api/classrooms/getAll');
                 setClassrooms(response.data.data);
             } catch (error) {
-                console.log('Error fetching classrooms:', error);
+                toast.error('Error al obtener las aulas.');
+                console.error('Error fetching classrooms:', error);
             }
         };
         fetchData();
@@ -25,31 +28,49 @@ const ClassroomList = () => {
     };
 
     const handleEdit = (classroom) => {
-        setEditClassroom(classroom);
+        setEditClassroom({ ...classroom });
     };
 
     const handleUpdate = async () => {
+        const { classroom_id, building, career, capacity, type } = editClassroom;
+
+        if (!building.trim() || !career.trim() || capacity === '' || type.trim() === '') {
+            toast.error('Todos los campos son obligatorios.');
+            return;
+        }
+
         try {
-            await axios.post(`http://192.168.1.72:3000/api/classrooms/updateOne/${editClassroom.classroom_id}`, editClassroom);
-            setClassrooms(classrooms.map(c => c.classroom_id === editClassroom.classroom_id ? editClassroom : c));
+            await axios.post(`http://192.168.1.72:3000/api/classrooms/updateOne/${classroom_id}`, editClassroom);
+            setClassrooms(classrooms.map(c => c.classroom_id === classroom_id ? editClassroom : c));
+            toast.success('Aula actualizada correctamente');
             setEditClassroom(null);
         } catch (error) {
-            console.log('Error updating classroom:', error);
+            toast.error('Error al actualizar el aula');
+            console.error('Error updating classroom:', error);
         }
     };
 
-    const handleDelete = async (classroomId) => {
+    const handleDelete = async () => {
         try {
-            await axios.delete(`http://192.168.1.72:3000/api/classrooms/deleteOne/${classroomId}`);
-            setClassrooms(classrooms.filter(c => c.classroom_id !== classroomId));
+            await axios.delete(`http://192.168.1.72:3000/api/classrooms/deleteOne/${confirmDelete.classroom_id}`);
+            setClassrooms(classrooms.filter(c => c.classroom_id !== confirmDelete.classroom_id));
+            toast.success('Aula eliminada correctamente');
+            setConfirmDelete(null);
         } catch (error) {
-            console.log('Error deleting classroom:', error);
+            toast.error('Error al eliminar el aula');
+            console.error('Error deleting classroom:', error);
         }
+    };
+
+    const closeModal = () => {
+        setEditClassroom(null);
+        setConfirmDelete(null);
     };
 
     return (
         <div>
             <h2>Lista de Aulas</h2>
+            <ToastContainer />
             <ul>
                 {classrooms.map((classroom) => (
                     <li key={classroom.classroom_id} className="collapsible">
@@ -66,19 +87,20 @@ const ClassroomList = () => {
                                 <p>Capacidad: {classroom.capacity}</p>
                                 <div className="btn-group">
                                     <button onClick={() => handleEdit(classroom)} className="ui-btn ui-btn-update">Actualizar</button>
-                                    <button onClick={() => handleDelete(classroom.classroom_id)} className="ui-btn ui-btn-danger">Borrar</button>
+                                    <button onClick={() => setConfirmDelete(classroom)} className="ui-btn ui-btn-danger">Borrar</button>
                                 </div>
                             </div>
                         )}
                     </li>
                 ))}
             </ul>
+
             {editClassroom && (
-                <div className="modal">
-                    <div className="modal-content">
+                <div className="modal" onClick={closeModal}>
+                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                         <div className="modal-header">
                             <h3>Actualizar Aula</h3>
-                            <button className="close-btn" onClick={() => setEditClassroom(null)}>✖</button>
+                            <button className="close-btn" onClick={closeModal}>✖</button>
                         </div>
                         <div className="form-group">
                             <label>Edificio:</label>
@@ -93,7 +115,23 @@ const ClassroomList = () => {
                         
                         <div className="btn-group">
                             <button onClick={handleUpdate} className="ui-btn ui-btn-success">Guardar cambios</button>
-                            <button onClick={() => setEditClassroom(null)} className="ui-btn ui-btn-danger">Cancelar</button>
+                            <button onClick={closeModal} className="ui-btn ui-btn-danger">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {confirmDelete && (
+                <div className="modal" onClick={closeModal}>
+                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                        <div className="modal-header">
+                            <h3>Confirmar Eliminación</h3>
+                            <button className="close-btn" onClick={closeModal}>✖</button>
+                        </div>
+                        <p>¿Estás seguro de que deseas eliminar el aula <strong>{confirmDelete.building} - {confirmDelete.type}</strong>?</p>
+                        <div className="btn-group">
+                            <button onClick={handleDelete} className="ui-btn ui-btn-danger">Sí, eliminar</button>
+                            <button onClick={closeModal} className="ui-btn">Cancelar</button>
                         </div>
                     </div>
                 </div>

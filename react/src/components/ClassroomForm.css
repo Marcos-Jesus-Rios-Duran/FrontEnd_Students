@@ -138,3 +138,13 @@ button.ui-btn-update:hover {
     background-color: #ffffff;
     color: #00796b; /* Cambiado el color del texto en los inputs */
 }
+
+/* Estilos para los mensajes de error */
+.error-messages {
+    background-color: #ffebee;
+    color: #d32f2f;
+    border: 1px solid #d32f2f;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 15px;
+}
