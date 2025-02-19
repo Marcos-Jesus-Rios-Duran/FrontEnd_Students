@@ -7,9 +7,9 @@ const studentSchema = Joi.object({
     student_id: Joi.number().required(),
     name: Joi.string().required(),
     lastname: Joi.string().required(),
-    grade: Joi.number().required(),
+    grade: Joi.number().max(11).required(),
     group: Joi.string().required(),
-    average: Joi.number().required()
+    average: Joi.number().max(10).required()
 });
 
 studentsController.getAll = (req, res) => {
@@ -47,41 +47,34 @@ studentsController.getOne = (req, res) => {
 };
 
 studentsController.insert = async (req, res) => {
-    const { error } = studentSchema.validate(req.body);
+    const { error } = studentSchema.validate(req.body, { abortEarly: false });
     if (error) {
         return res.status(400).json({
-            data: {
-                message: error.details[0].message
-            }
+            errors: error.details.map(detail => detail.message)
         });
     }
 
     try {
         const existingStudent = await studentDAO.getOne(req.body.student_id);
         if (existingStudent) {
-            res.json({
-                data: {
-                    message: "Student already exists",
-                }
-            });
-        } else {
-            const response = await studentDAO.insert(req.body);
-            res.json({
-                data: {
-                    message: "Student saved",
-                    student: response
-                }
+            return res.status(400).json({
+                errors: ["Student already exists"]
             });
         }
-    } catch (error) {
+
+        const response = await studentDAO.insert(req.body);
         res.json({
             data: {
-                message: error.message
+                message: "Student saved",
+                student: response
             }
+        });
+    } catch (error) {
+        res.status(500).json({
+            errors: [error.message]
         });
     }
 };
-
 studentsController.updateOne = async (req, res) => {
     const { error } = studentSchema.validate(req.body);
     if (error) {
