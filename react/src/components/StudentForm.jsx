@@ -30,7 +30,7 @@ const StudentForm = ({ onStudentAdded }) => {
         }
 
         try {
-            const response = await axios.post('http://10.10.60.28:3000/api/students/insert', student);
+            const response = await axios.post('http://192.168.1.72:3000/api/students/insert', student);
             toast.success('Student saved successfully');
             setStudent({
                 student_id: '',
@@ -40,10 +40,12 @@ const StudentForm = ({ onStudentAdded }) => {
                 group: '',
                 average: ''
             });
-            onStudentAdded(response.data.data); // Notify parent component
+            onStudentAdded(response.data.data);
         } catch (error) {
-            if (error.response && error.response.data && error.response.data.data && error.response.data.data.message) {
-                toast.error(error.response.data.data.message);
+            if (error.response && error.response.data && error.response.data.errors) {
+                error.response.data.errors.forEach(errMessage => {
+                    toast.error(errMessage);
+                });
             } else {
                 toast.error('Failed to save student');
             }
