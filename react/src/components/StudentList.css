@@ -189,3 +189,14 @@ button.toggle-btn:hover {
   padding: 10px;
   border-radius: 5px;
 }
+#confirm-delete-message {
+  font-family: 'Georgia', serif;
+  font-size: 18px;
+  color: #333;
+}
+
+#confirm-delete-message .highlight {
+  font-weight: bold;
+  color: #d9534f; /* Color rojo formal */
+  font-family: 'Times New Roman', Times, serif;
+}
