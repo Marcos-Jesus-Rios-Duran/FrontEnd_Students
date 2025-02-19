@@ -11,7 +11,7 @@ const TeacherList = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://10.10.60.28:3000/api/teachers/getAll');
+                const response = await axios.get('http://192.168.1.72:3000/api/teachers/getAll');
                 setTeachers(response.data.data);
             } catch (error) {
                 console.log('Error fetching teachers:', error);
@@ -30,7 +30,7 @@ const TeacherList = () => {
 
     const handleUpdate = async () => {
         try {
-            await axios.post(`http://10.10.60.28:3000/api/teachers/updateOne/${editTeacher.teacher_number}`, editTeacher);
+            await axios.post(`http://192.168.1.72:3000/api/teachers/updateOne/${editTeacher.teacher_number}`, editTeacher);
             setTeachers(teachers.map(t => t.teacher_number === editTeacher.teacher_number ? editTeacher : t));
             setEditTeacher(null);
         } catch (error) {
@@ -40,7 +40,7 @@ const TeacherList = () => {
 
     const handleDelete = async (teacherNumber) => {
         try {
-            await axios.delete(`http://10.10.60.28:3000/api/teachers/deleteOne/${teacherNumber}`);
+            await axios.delete(`http://192.168.1.72:3000/api/teachers/deleteOne/${teacherNumber}`);
             setTeachers(teachers.filter(t => t.teacher_number !== teacherNumber));
         } catch (error) {
             console.log('Error deleting teacher:', error);
