@@ -13,6 +13,7 @@ import './App.css';
 function App() {
     const [view, setView] = useState('students');
     const [students, setStudents] = useState([]);
+    const [teachers, setTeachers] = useState([]); // Agrega estado para los docentes
     const [classrooms, setClassrooms] = useState([]);
 
     useEffect(() => {
@@ -35,6 +36,10 @@ function App() {
         setStudents([...students, newStudent]);
     };
 
+    const handleTeacherAdded = (newTeacher) => { // Agrega esta función para los docentes
+        setTeachers([...teachers, newTeacher]);
+    };
+
     return (
         <div>
             <Header setView={setView} />
@@ -46,8 +51,8 @@ function App() {
                     </>
                 ) : view === 'teachers' ? (
                     <>
-                        <TeacherForm />
-                        <TeacherList />
+                        <TeacherForm onTeacherAdded={handleTeacherAdded} /> {/* Pasa la función como prop */}
+                        <TeacherList teachers={teachers} setTeachers={setTeachers} /> {/* Pasa el estado y la función de actualización */}
                     </>
                 ) : (
                     <>
