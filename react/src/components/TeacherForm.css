@@ -57,3 +57,56 @@ button:disabled {
 input[required] {
     border-left: 5px solid #4CAF50;
 }
+
+/* Estilos adicionales */
+.teacher-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.teacher-form label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+.teacher-form input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: white !important;
+    color: black !important;
+}
+
+.teacher-form button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #5cb85c;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.teacher-form button:hover {
+    background-color: #4cae4c;
+}
+
+/* Estilo para el mensaje de confirmación de eliminación */
+#confirm-delete-message {
+    font-family: 'Georgia', serif;
+    font-size: 18px;
+    color: #333;
+}
+
+#confirm-delete-message .highlight {
+    font-weight: bold;
+    color: #d9534f; /* Color rojo formal */
+    font-family: 'Times New Roman', Times, serif;
+}
